@@ -1,4 +1,4 @@
-#Guia para configurar wsl de forma autonoma
+#Guia para configurar wsl de forma autonoma#
 *opcion 1 copiar los bash de mi nube cloud*
 
 `línea de código`
@@ -11,6 +11,7 @@ revisar con nano ambos archivos antes de ejecutarlos (revisar el nombre de usuar
 ```
 
 *opcion 2 clonar el repositorio*
+
 `línea de código`
 ```bash
 cd 
