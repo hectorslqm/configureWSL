@@ -20,6 +20,12 @@ nvm install --lts
 nvm install node
 node --version
 nvm ls-remote
+# Instalamos  ODBC SQL SERVER 18 ODBC
+curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add -
+curl https://packages.microsoft.com/config/ubuntu/18.04/prod.list > /etc/apt/sources.list.d/mssql-release.list
+#exit
+sudo apt-get update
+sudo apt-get install -y msodbcsql18
 
 # Reiniciamos la terminal
 exec zsh -l

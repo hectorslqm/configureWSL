@@ -1,4 +1,17 @@
-#Guia para configurar wsl de forma autonoma#
+# Guia para configurar wsl de forma autonoma#
+El archivo *configureWSL-PT1.sh* configura la terminal con cosas basicas:
+* upgrade
+* update
+* instalar ohmyzsh (una terminal mejorada)
+* instalar el tema personalizado
+* crear accesos directos que normalmente ocupo
+
+El archivo *configureWSL-PT2.sh* instala programas necesarios para programar js python y github que seguramente para este momento ya esta instalado, tambien escribe el nombre y correo de github:
+* git
+* python
+* node
+* ODBC SQL SERVER 18 
+
 *opcion 1 copiar los bash de mi nube cloud*
 
 `línea de código`
