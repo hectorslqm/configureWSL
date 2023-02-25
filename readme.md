@@ -1,4 +1,4 @@
-# Guia para configurar wsl de forma autonoma#
+# Guia para configurar wsl de forma autonoma
 El archivo *configureWSL-PT1.sh* configura la terminal con cosas basicas:
 * upgrade
 * update
@@ -10,7 +10,7 @@ El archivo *configureWSL-PT2.sh* instala programas necesarios para programar js 
 * git
 * python
 * node
-* ODBC SQL SERVER 18 
+* ODBC (msodbcsql18)
 
 *opcion 1 copiar los bash de mi nube cloud*
 
@@ -29,13 +29,14 @@ revisar con nano ambos archivos antes de ejecutarlos (revisar el nombre de usuar
 ```bash
 cd 
 mkdir configureWSL
-cd configureWSL
 git clone https://github.com/hectorslqm/configureWSL.git
+cd configureWSL
 ```
 
 Luego procedemos a hacer ejecutables los scripts
 
 *volvemos ejecutables los scripts*
+
 `línea de código`
 ```bash
 chmod +x configureWSL/configureWSL-PT1.sh
@@ -43,10 +44,12 @@ chmod +x configureWSL/configureWSL-PT2.sh
 ```
 
 *ejecutamos los scripts*
+
 `lìnea de código`
 ```bash
 
 configureWSL/configureWSL-Part1.sh
+#reiniciamos wsl y ejecutamos la parte 2
 configureWSL/configureWSL-Part2.sh
 ```
 listo 😁
