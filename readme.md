@@ -1,18 +1,18 @@
 # Guide to Set Up WSL Independently
 The file configureWSL-PT1.sh sets up the terminal with basic things:
 
--upgrade
--update
--install oh-my-zsh (an enhanced terminal)
--install the custom theme
--create shortcuts that I commonly use
+- upgrade
+- update
+- install oh-my-zsh (an enhanced terminal)
+- install the custom theme
+- create shortcuts that I commonly use
 
 The file configureWSL-PT2.sh installs programs needed for programming in JS, Python, and GitHub, which are probably already installed by now. It also sets your GitHub name and email:
 
--git
--python
--node
--ODBC (msodbcsql18)
+- git
+- python
+- node
+- ODBC (msodbcsql18)
 
 ## Option 1: Copy the bash scripts from my cloud
 
@@ -83,7 +83,14 @@ touch .gitconfig.personal
 touch .gitconfig.work
 ```
 ## Create one folder for work repos and one folder for personal repos
+When using the same computer for both personal and work projects, managing different SSH keys, Git emails, and configurations can be tricky.
+This setup allows you to:
 
+1. Keep personal and work repositories separate in different folders.
+2. Configure Git to automatically use the correct SSH key and identity based on the repository folder.
+3. Avoid conflicts between GitHub/Git accounts and keep your configurations organized.
+
+This guide shows how to set up your system for Windows, Linux, and macOS, creating custom configuration files and organizing your repositories so Git always uses the correct identity without any manual intervention.
 ### For Windows
 Use file explorer and create two folders in `C:/Users/yourUser/`
 - personal-develop
