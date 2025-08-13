@@ -1,55 +1,151 @@
-# Guia para configurar wsl de forma autonoma
-El archivo *configureWSL-PT1.sh* configura la terminal con cosas basicas:
-* upgrade
-* update
-* instalar ohmyzsh (una terminal mejorada)
-* instalar el tema personalizado
-* crear accesos directos que normalmente ocupo
+# Guide to Set Up WSL Independently
+The file configureWSL-PT1.sh sets up the terminal with basic things:
 
-El archivo *configureWSL-PT2.sh* instala programas necesarios para programar js python y github que seguramente para este momento ya esta instalado, tambien escribe el nombre y correo de github:
-* git
-* python
-* node
-* ODBC (msodbcsql18)
+-upgrade
+-update
+-install oh-my-zsh (an enhanced terminal)
+-install the custom theme
+-create shortcuts that I commonly use
 
-*opcion 1 copiar los bash de mi nube cloud*
+The file configureWSL-PT2.sh installs programs needed for programming in JS, Python, and GitHub, which are probably already installed by now. It also sets your GitHub name and email:
 
-`línea de código`
-```bash
+-git
+-python
+-node
+-ODBC (msodbcsql18)
+
+## Option 1: Copy the bash scripts from my cloud
+
+```sh
 cd
 mkdir configureWSL
 cp mnt/c/Users/hecto/OneDrive/DEVELOP/configureWSL/configureWSL-PT1.sh ~/configureWSL/
 cp mnt/c/Users/hecto/OneDrive/DEVELOP/configureWSL/configureWSL-PT2.sh ~/configureWSL/
-revisar con nano ambos archivos antes de ejecutarlos (revisar el nombre de usuario, las rutas y correo de git)
+# Check both files with nano before running (verify username, paths, and git email)
 ```
-
-*opcion 2 clonar el repositorio*
-
-`línea de código`
-```bash
+## Option 2: Clone the repository
+```sh
 cd 
 mkdir configureWSL
 git clone https://github.com/hectorslqm/configureWSL.git
 cd configureWSL
 ```
 
-Luego procedemos a hacer ejecutables los scripts
-
-*volvemos ejecutables los scripts*
-
-`línea de código`
-```bash
+## Make the scripts executable
+```sh
 chmod +x configureWSL/configureWSL-PT1.sh
 chmod +x configureWSL/configureWSL-PT2.sh
 ```
-
-*ejecutamos los scripts*
-
-`lìnea de código`
-```bash
-
-configureWSL/configureWSL-Part1.sh
-#reiniciamos wsl y ejecutamos la parte 2
-configureWSL/configureWSL-Part2.sh
+## Run the scripts
 ```
-listo 😁
+  configureWSL/configureWSL-Part1.sh
+  # Restart WSL and run Part 2
+  configureWSL/configureWSL-Part2.sh
+```
+Done 😁
+
+# Extra How to setup work folder and personal folder
+
+## Create one SSH Key for work and one for personal use
+Repeat the following steps for your personal and for your work git accounts
+```sh 
+ssh-keygen -t ed25519 -C "email" -f "username"
+```
+## For Windows
+```sh
+eval `ssh-agent -s`
+ssh-add ~/.ssh/yourKeyName
+```
+## For Mac or Linux
+```sh
+eval "$(ssh-agent -s)"
+#Mac apple keychain
+ssh-add --apple-use-keychain ~/.ssh/yourKeyName
+#Linux
+ssh-add ~/.ssh/yourKeyName
+```
+## Create gitconfigs
+We need a main `.gitconfig`,`.gitconfig.personal` and `.gitconfig.work`
+
+### For Windows
+```cmd
+cd %USERPROFILE%
+type nul > .gitconfig
+type nul > .gitconfig.personal
+type nul > .gitconfig.work
+```
+
+### For MAC & Linux
+```sh
+cd
+touch .gitconfig
+touch .gitconfig.personal
+touch .gitconfig.work
+```
+## Create one folder for work repos and one folder for personal repos
+
+### For Windows
+Use file explorer and create two folders in `C:/Users/yourUser/`
+- personal-develop
+- work-develop
+### For MAC & Linux
+```sh
+cd
+mkdir personal-develop
+mkdir work-develop
+```
+
+## Modify .gitconfig
+### For Windows
+```git
+[includeIf "gitdir:C:/Users/yourUser/work-develop/"]
+path = C:/Users/yourUser/.gitconfig.personal
+
+[includeIf "gitdir:C:/Users/yourUser/personal-develop/"]
+path = C:/Users/yourUser/.gitconfig.work
+```
+
+### For Linux
+```git
+[includeIf "gitdir:~/work-develop/"]
+path = ~/.gitconfig.personal
+
+[includeIf "gitdir:~/personal-develop/"]
+path =~/.gitconfig.work
+```
+## Modify custom git configs
+Repeat this step for `.gitconfig.work` and `.gitconfig.personal`
+### For Windows
+```
+[user]
+	name = Your Name
+	email = Your Email
+[github]
+	user = your account
+
+[core]
+	sshCommand = "ssh -i C:/Users/yourUser/.ssh/yourSSHKey"
+
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+```
+### For Linux Mac
+```
+[user]
+	name = Your Name
+	email = Your Email
+[github]
+	user = your account
+
+[core]
+	sshCommand = "ssh -i ~/.ssh/yourSSHKey"
+
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+```
